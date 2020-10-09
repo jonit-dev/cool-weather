@@ -1,0 +1,8 @@
+{
+  "name": "CoolWeather",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "4874ef97"
+}
