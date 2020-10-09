@@ -1,22 +1,27 @@
-import { IonButtons, IonContent, IonHeader, IonIcon, IonMenuButton, IonPage, IonToolbar } from '@ionic/react';
-import { sunnyOutline } from 'ionicons/icons';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonToolbar } from '@ionic/react';
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import { globalEnv } from '../constants/global.config';
-import { ConnectionHelper } from '../libs/RequestHelper';
+import { WeatherConditionIcon } from '../components/pages/Weather/WeatherConditionIcon';
+import { loadWeatherData } from '../store/actions/weather.action';
+import { AppState } from '../store/reducers/index.reducers';
+import { IWeatherData } from '../store/types/weather.types';
 
 export const WeatherPage: React.FC = () => {
-  useEffect(() => {
-    (async () => {
-      const response = await ConnectionHelper.request(
-        "GET",
-        `/forecast?q=Vancouver&appid=${globalEnv.weatherApiKey}`
-      );
+  const { city, condition, conditionIcon, tempCelsius } = useSelector<
+    AppState,
+    IWeatherData
+  >((state) => state.weatherReducer);
 
-      console.log(response);
-    })();
-  }, []);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    console.log(`Loading weather data from ${city}`);
+    if (city) {
+      dispatch(loadWeatherData(city));
+    }
+  }, [city, dispatch]);
 
   return (
     <IonPage>
@@ -42,15 +47,14 @@ export const WeatherPage: React.FC = () => {
         <WeatherInfoContainer className="ion-padding">
           <WeatherCenterPanel>
             <WeatherConditionRow>
-              <WeatherConditionTitle>Sunny</WeatherConditionTitle>
+              <WeatherConditionTitle>{condition}</WeatherConditionTitle>
             </WeatherConditionRow>
 
             <WeatherConditionRow>
-              <WeatherConditionIcon>
-                <IonIcon icon={sunnyOutline} />
-              </WeatherConditionIcon>
-
-              <WeatherTemperature>75°</WeatherTemperature>
+              {conditionIcon && (
+                <WeatherConditionIcon conditionIcon={conditionIcon} />
+              )}
+              <WeatherTemperature>{tempCelsius}°</WeatherTemperature>
             </WeatherConditionRow>
           </WeatherCenterPanel>
         </WeatherInfoContainer>
@@ -72,6 +76,11 @@ const WeatherCenterPanel = styled.div`
   display: flex;
   flex-wrap: wrap;
   max-width: 70%;
+
+  /*DESKTOP ONLY CODE*/
+  @media screen and (min-width: 700px) {
+    max-width: 300px;
+  }
 `;
 
 const WeatherConditionTitle = styled.div`
@@ -81,19 +90,6 @@ const WeatherConditionTitle = styled.div`
   position: relative;
   top: -2rem;
   letter-spacing: 2px;
-`;
-
-const WeatherConditionIcon = styled.div`
-  flex: 50%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  ion-icon {
-    font-size: 5rem;
-    margin: 0 auto;
-  }
 `;
 
 const WeatherTemperature = styled.div`

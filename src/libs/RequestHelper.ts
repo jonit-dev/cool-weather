@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from 'axios';
 
 import { weatherApiAxios } from '../constants/axios.constant';
 
-export class ConnectionHelper {
+export class APIHelper {
   public static async request(
     method: AxiosRequestConfig["method"],
     url: string,
