@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 
-./src/constants/global.config.ts
+/src/constants/global.config.ts
