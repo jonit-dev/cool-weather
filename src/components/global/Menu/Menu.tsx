@@ -88,7 +88,6 @@ export const Menu: React.FC = () => {
                     slot="start"
                     ios={appPage.iosIcon}
                     md={appPage.mdIcon}
-                    color="light"
                   />
                   <IonLabel>{appPage.title}</IonLabel>
                 </IonItem>

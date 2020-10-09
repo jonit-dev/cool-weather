@@ -1,4 +1,3 @@
-import './fonts/helvetica/helvetica.css';
 import './theme/variables.css';
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/display.css';
