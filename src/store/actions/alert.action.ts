@@ -1,4 +1,4 @@
-import { IAlert } from '../../components/pages/ShowAlert/ShowAlert.types';
+import { IAlert } from '../../components/global/ShowAlert/ShowAlert.types';
 import { CLEAR_ALERT, SHOW_ALERT } from '../reducers/alert.reducer';
 
 export const showAlert = (alert: IAlert) => (dispatch) => {

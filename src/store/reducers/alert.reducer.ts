@@ -1,4 +1,4 @@
-import { IAlert } from '../../components/pages/ShowAlert/ShowAlert.types';
+import { IAlert } from '../../components/global/ShowAlert/ShowAlert.types';
 import { IAction } from '../types/redux.types';
 
 export const SHOW_ALERT = "SHOW_ALERT";

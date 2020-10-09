@@ -1,3 +1,4 @@
+import './fonts/helvetica/helvetica.css';
 import './theme/variables.css';
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/display.css';
@@ -15,7 +16,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
-import Menu from './components/Menu';
+import { Menu } from './components/global/Menu/Menu';
 import { WeatherPage } from './pages/Weather';
 
 /* Core CSS required for Ionic components to work properly */

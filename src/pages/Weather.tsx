@@ -1,31 +1,48 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import React from 'react';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonToolbar } from '@ionic/react';
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+
+import { globalEnv } from '../constants/global.config';
+import { ConnectionHelper } from '../libs/RequestHelper';
 
 export const WeatherPage: React.FC = () => {
-  const pageTitle = "Weather";
+  useEffect(() => {
+    (async () => {
+      const response = await ConnectionHelper.request(
+        "GET",
+        `/forecast?q=Vancouver&appid=${globalEnv.weatherApiKey}`
+      );
+
+      console.log(response);
+    })();
+  }, []);
 
   return (
     <IonPage>
-      <IonHeader translucent={true}>
+      <IonHeader translucent={true} mode="ios">
         <IonToolbar>
           <IonButtons slot="start">
-            <IonMenuButton />
+            <IonMenuButton color="light" />
           </IonButtons>
-          <IonTitle>{pageTitle}</IonTitle>
+          {/* <IonTitle>{pageTitle}</IonTitle> */}
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
+      <IonContent fullscreen color="danger">
+        <IonHeader collapse="condense" translucent={true} mode="ios">
+          {/* <IonToolbar>
             <IonTitle size="large">{pageTitle}</IonTitle>
-          </IonToolbar>
+          </IonToolbar> */}
         </IonHeader>
 
         <div className="ion-padding">
-          <h1>Weather data</h1>
+          <H1>Weather data</H1>
         </div>
       </IonContent>
     </IonPage>
   );
 };
+
+const H1 = styled.h1`
+  font-family: "Helvetica Neue";
+`;
