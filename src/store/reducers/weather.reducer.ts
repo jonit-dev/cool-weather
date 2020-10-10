@@ -8,7 +8,9 @@ const INITIAL_STATE: IWeatherData = {
   city: "Vancouver", // default city
   condition: null,
   conditionIcon: null,
+  conditionDescription: null,
   tempCelsius: null,
+  forecastData: [],
 };
 
 export const weatherReducer = (state = INITIAL_STATE, action: IAction) => {

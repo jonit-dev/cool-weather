@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
 import { WeatherConditionIcon } from '../components/pages/Weather/WeatherConditionIcon';
-import { loadWeatherData } from '../store/actions/weather.action';
+import { WeatherForecast } from '../components/pages/Weather/WeatherForecast';
+import { loadCurrentWeatherData, loadWeatherForecastData } from '../store/actions/weather.action';
 import { AppState } from '../store/reducers/index.reducers';
 import { IWeatherData } from '../store/types/weather.types';
 
@@ -19,7 +20,8 @@ export const WeatherPage: React.FC = () => {
   useEffect(() => {
     console.log(`Loading weather data from ${city}`);
     if (city) {
-      dispatch(loadWeatherData(city));
+      dispatch(loadCurrentWeatherData(city));
+      dispatch(loadWeatherForecastData(city));
     }
   }, [city, dispatch]);
 
@@ -57,6 +59,8 @@ export const WeatherPage: React.FC = () => {
               <WeatherTemperature>{tempCelsius}°</WeatherTemperature>
             </WeatherConditionRow>
           </WeatherCenterPanel>
+
+          <WeatherForecast />
         </WeatherInfoContainer>
       </IonContent>
     </IonPage>
