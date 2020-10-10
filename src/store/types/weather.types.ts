@@ -4,12 +4,12 @@ export interface IWeatherData {
   conditionDescription: string | null;
   conditionIcon: string | null;
   tempCelsius: number | null;
-  forecastData: IWeatherData[];
+  forecastData: IWeatherForecastItem[];
 }
 
 export interface IWeatherForecastItem {
   city: string | null;
-  date: Date;
+  date: string;
   condition: string | null;
   conditionDescription: string | null;
   conditionIcon: string | null;

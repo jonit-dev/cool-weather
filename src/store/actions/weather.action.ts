@@ -1,4 +1,5 @@
 import { globalEnv } from '../../constants/global.config';
+import { DateHelper } from '../../libs/DateHelper';
 import { APIHelper } from '../../libs/RequestHelper';
 import { LOAD_WEATHER } from '../reducers/weather.reducer';
 import { IWeatherForecastItem } from '../types/weather.types';
@@ -30,7 +31,7 @@ export const loadWeatherForecastData = (city: string) => async (dispatch) => {
   const forecastData: IWeatherForecastItem[] = data.list.map((item) => {
     return {
       city,
-      date: item.dt,
+      date: DateHelper.getDateHumanFormat(item.dt_txt),
       condition: item.weather[0].main,
       conditionDescription: item.weather[0].description,
       conditionIcon: item.weather[0].icon,

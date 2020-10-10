@@ -10,10 +10,13 @@ import { AppState } from '../store/reducers/index.reducers';
 import { IWeatherData } from '../store/types/weather.types';
 
 export const WeatherPage: React.FC = () => {
-  const { city, condition, conditionIcon, tempCelsius } = useSelector<
-    AppState,
-    IWeatherData
-  >((state) => state.weatherReducer);
+  const {
+    city,
+    condition,
+    conditionIcon,
+    tempCelsius,
+    forecastData,
+  } = useSelector<AppState, IWeatherData>((state) => state.weatherReducer);
 
   const dispatch = useDispatch();
 
@@ -59,9 +62,8 @@ export const WeatherPage: React.FC = () => {
               <WeatherTemperature>{tempCelsius}°</WeatherTemperature>
             </WeatherConditionRow>
           </WeatherCenterPanel>
-
-          <WeatherForecast />
         </WeatherInfoContainer>
+        {forecastData && <WeatherForecast weatherData={forecastData} />}
       </IonContent>
     </IonPage>
   );
@@ -72,7 +74,7 @@ const WeatherInfoContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  height: 70%;
+  height: 60%;
 `;
 
 const WeatherCenterPanel = styled.div`
