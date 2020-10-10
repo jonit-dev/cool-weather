@@ -1,4 +1,5 @@
 export interface IWeatherData {
+  country: string | null;
   city: string | null;
   condition: string | null;
   conditionDescription: string | null;

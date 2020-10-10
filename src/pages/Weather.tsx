@@ -6,14 +6,17 @@ import styled from 'styled-components/macro';
 import { GeolocationButton } from '../components/global/Toolbar/GeolocationButton';
 import { WeatherConditionIcon } from '../components/pages/Weather/WeatherConditionIcon';
 import { WeatherForecast } from '../components/pages/Weather/WeatherForecast';
+import { toggleLoading } from '../store/actions/loading.action';
 import { loadCurrentWeatherData, loadWeatherForecastData } from '../store/actions/weather.action';
 import { AppState } from '../store/reducers/index.reducers';
 import { IWeatherData } from '../store/types/weather.types';
 
 export const WeatherPage: React.FC = () => {
   const {
+    country,
     city,
     condition,
+    conditionDescription,
     conditionIcon,
     tempCelsius,
     forecastData,
@@ -22,11 +25,15 @@ export const WeatherPage: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log(`Loading weather data from ${city}`);
-    if (city) {
-      dispatch(loadCurrentWeatherData(city));
-      dispatch(loadWeatherForecastData(city));
-    }
+    (async () => {
+      console.log(`Loading weather data from ${city}`);
+      if (city) {
+        dispatch(toggleLoading(true, "Loading weather data..."));
+        dispatch(loadCurrentWeatherData(city));
+        dispatch(loadWeatherForecastData(city));
+        dispatch(toggleLoading(false, null));
+      }
+    })();
   }, [city, dispatch]);
 
   return (
@@ -51,22 +58,30 @@ export const WeatherPage: React.FC = () => {
             <IonTitle size="large">{pageTitle}</IonTitle>
           </IonToolbar> */}
         </IonHeader>
-        <WeatherTitle>{city}</WeatherTitle>
+        {city && (
+          <>
+            <WeatherTitle>
+              {city}, {country}
+            </WeatherTitle>
 
-        <WeatherInfoContainer className="ion-padding">
-          <WeatherCenterPanel>
-            <WeatherConditionRow>
-              <WeatherConditionTitle>{condition}</WeatherConditionTitle>
-            </WeatherConditionRow>
+            <WeatherInfoContainer className="ion-padding">
+              <WeatherCenterPanel>
+                <WeatherConditionRow>
+                  <WeatherConditionTitle>
+                    {condition} ({conditionDescription})
+                  </WeatherConditionTitle>
+                </WeatherConditionRow>
 
-            <WeatherConditionRow>
-              {conditionIcon && (
-                <WeatherConditionIcon conditionIcon={conditionIcon} />
-              )}
-              <WeatherTemperature>{tempCelsius}°</WeatherTemperature>
-            </WeatherConditionRow>
-          </WeatherCenterPanel>
-        </WeatherInfoContainer>
+                <WeatherConditionRow>
+                  {conditionIcon && (
+                    <WeatherConditionIcon conditionIcon={conditionIcon} />
+                  )}
+                  <WeatherTemperature>{tempCelsius}°</WeatherTemperature>
+                </WeatherConditionRow>
+              </WeatherCenterPanel>
+            </WeatherInfoContainer>
+          </>
+        )}
         {forecastData && <WeatherForecast weatherData={forecastData} />}
       </IonContent>
     </IonPage>

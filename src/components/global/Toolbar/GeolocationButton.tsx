@@ -4,11 +4,9 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
-import { changeWeatherCity } from '../../../store/actions/weather.action';
+import { loadCurrentWeatherData } from '../../../store/actions/weather.action';
 
-interface IProps {}
-
-export const GeolocationButton: React.FC<IProps> = (props) => {
+export const GeolocationButton: React.FC = (props) => {
   const dispatch = useDispatch();
 
   const onGeolocationChange = () => {
@@ -16,7 +14,7 @@ export const GeolocationButton: React.FC<IProps> = (props) => {
   };
 
   const onTriggerCityChange = (city: string) => {
-    dispatch(changeWeatherCity(city));
+    dispatch(loadCurrentWeatherData(city));
   };
 
   const [showAlert, setShowAlert] = useState<boolean>(false);
@@ -49,7 +47,9 @@ export const GeolocationButton: React.FC<IProps> = (props) => {
           {
             text: "Okay",
             handler: (value) => {
-              onTriggerCityChange(value.City);
+              if (value.City) {
+                onTriggerCityChange(value.City);
+              }
             },
           },
         ]}

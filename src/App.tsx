@@ -16,6 +16,8 @@ import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
 
 import { Menu } from './components/global/Menu/Menu';
+import { ShowAlert } from './components/global/ShowAlert/ShowAlert';
+import { ShowLoading } from './components/global/ShowLoading/ShowLoading';
 import { WeatherPage } from './pages/Weather';
 
 /* Core CSS required for Ionic components to work properly */
@@ -25,6 +27,8 @@ import { WeatherPage } from './pages/Weather';
 const App: React.FC = () => {
   return (
     <IonApp>
+      <ShowLoading />
+      <ShowAlert />
       <IonReactRouter>
         <IonSplitPane contentId="main">
           <Menu />

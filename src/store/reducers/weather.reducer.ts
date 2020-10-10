@@ -5,6 +5,7 @@ export const CLEAR_WEATHER = "CLEAR_WEATHER";
 export const CHANGE_WEATHER_CITY = " CHANGE_WEATHER_CITY";
 
 const INITIAL_STATE: IWeatherData = {
+  country: "CA",
   city: "Vancouver", // default city
   condition: null,
   conditionIcon: null,
