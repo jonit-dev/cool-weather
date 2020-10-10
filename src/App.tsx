@@ -18,6 +18,7 @@ import { Redirect, Route } from 'react-router-dom';
 import { Menu } from './components/global/Menu/Menu';
 import { ShowAlert } from './components/global/ShowAlert/ShowAlert';
 import { ShowLoading } from './components/global/ShowLoading/ShowLoading';
+import { ThingsToDo } from './pages/ThingsToDo';
 import { WeatherPage } from './pages/Weather';
 
 /* Core CSS required for Ionic components to work properly */
@@ -34,6 +35,7 @@ const App: React.FC = () => {
           <Menu />
           <IonRouterOutlet id="main">
             <Route path="/page/weather" component={WeatherPage} exact />
+            <Route path="/page/things-to-do" component={ThingsToDo} exact />
             <Redirect from="/" to="/page/weather" exact />
           </IonRouterOutlet>
         </IonSplitPane>

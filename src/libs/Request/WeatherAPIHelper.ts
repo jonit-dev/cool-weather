@@ -4,9 +4,6 @@ import { weatherApiAxios } from '../../constants/axios.constant';
 import { RequestHelper } from './RequestHelper';
 
 export class WeatherAPIHelper extends RequestHelper {
-  constructor() {
-    super();
-  }
   public async weatherRequest(
     method: AxiosRequestConfig["method"],
     url: string,

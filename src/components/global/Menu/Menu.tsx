@@ -11,7 +11,7 @@ import {
   IonMenuToggle,
   IonNote,
 } from '@ionic/react';
-import { sunnyOutline } from 'ionicons/icons';
+import { bulbOutline, sunnyOutline } from 'ionicons/icons';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -28,6 +28,12 @@ const appPages: AppPage[] = [
     url: "/page/weather",
     iosIcon: sunnyOutline,
     mdIcon: sunnyOutline,
+  },
+  {
+    title: "Things To Do",
+    url: "/page/things-to-do",
+    iosIcon: bulbOutline,
+    mdIcon: bulbOutline,
   },
   // {
   //   title: 'Outbox',

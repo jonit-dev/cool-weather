@@ -1,9 +1,8 @@
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonToolbar } from '@ionic/react';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import { GeolocationButton } from '../components/global/Toolbar/GeolocationButton';
+import { Page } from '../components/global/Page/Page';
 import { WeatherConditionIcon } from '../components/pages/Weather/WeatherConditionIcon';
 import { WeatherForecast } from '../components/pages/Weather/WeatherForecast';
 import { toggleLoading } from '../store/actions/loading.action';
@@ -39,54 +38,33 @@ export const WeatherPage: React.FC = () => {
   }, [city, dispatch]);
 
   return (
-    <IonPage>
-      <CustomHeader>
-        <IonHeader translucent={true} mode="ios">
-          <IonToolbar>
-            <IonButtons slot="start">
-              <IonMenuButton color="light" />
-            </IonButtons>
-            <IonButtons slot="end">
-              <GeolocationButton />
-            </IonButtons>
-            {/* <IonTitle>{pageTitle}</IonTitle> */}
-          </IonToolbar>
-        </IonHeader>
-      </CustomHeader>
+    <Page>
+      {city && (
+        <>
+          <WeatherTitle>
+            {city}, {country}
+          </WeatherTitle>
 
-      <IonContent fullscreen color="danger">
-        <IonHeader collapse="condense" translucent={true} mode="ios">
-          {/* <IonToolbar>
-            <IonTitle size="large">{pageTitle}</IonTitle>
-          </IonToolbar> */}
-        </IonHeader>
-        {city && (
-          <>
-            <WeatherTitle>
-              {city}, {country}
-            </WeatherTitle>
+          <WeatherInfoContainer className="ion-padding">
+            <WeatherCenterPanel>
+              <WeatherConditionRow>
+                <WeatherConditionTitle>
+                  {condition} ({conditionDescription})
+                </WeatherConditionTitle>
+              </WeatherConditionRow>
 
-            <WeatherInfoContainer className="ion-padding">
-              <WeatherCenterPanel>
-                <WeatherConditionRow>
-                  <WeatherConditionTitle>
-                    {condition} ({conditionDescription})
-                  </WeatherConditionTitle>
-                </WeatherConditionRow>
-
-                <WeatherConditionRow>
-                  {conditionIcon && (
-                    <WeatherConditionIcon conditionIcon={conditionIcon} />
-                  )}
-                  <WeatherTemperature>{tempCelsius}°</WeatherTemperature>
-                </WeatherConditionRow>
-              </WeatherCenterPanel>
-            </WeatherInfoContainer>
-          </>
-        )}
-        {forecastData && <WeatherForecast weatherData={forecastData} />}
-      </IonContent>
-    </IonPage>
+              <WeatherConditionRow>
+                {conditionIcon && (
+                  <WeatherConditionIcon conditionIcon={conditionIcon} />
+                )}
+                <WeatherTemperature>{tempCelsius}°</WeatherTemperature>
+              </WeatherConditionRow>
+            </WeatherCenterPanel>
+          </WeatherInfoContainer>
+        </>
+      )}
+      {forecastData && <WeatherForecast weatherData={forecastData} />}
+    </Page>
   );
 };
 
@@ -131,12 +109,6 @@ const WeatherConditionRow = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex: 100%;
-`;
-
-const CustomHeader = styled.div`
-  ion-header {
-    z-index: unset;
-  }
 `;
 
 const WeatherTitle = styled.div`
