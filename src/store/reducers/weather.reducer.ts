@@ -1,10 +1,10 @@
-import { IWeatherData } from '../types/weather.types';
+import { ICurrentWeatherData } from '../types/weather.types';
 
 export const LOAD_WEATHER = "LOAD_WEATHER";
 export const CLEAR_WEATHER = "CLEAR_WEATHER";
 export const CHANGE_WEATHER_CITY = " CHANGE_WEATHER_CITY";
 
-const INITIAL_STATE: IWeatherData = {
+const INITIAL_STATE: ICurrentWeatherData = {
   country: "CA",
   city: "Vancouver", // default city
   condition: null,

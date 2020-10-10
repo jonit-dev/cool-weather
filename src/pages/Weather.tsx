@@ -9,7 +9,7 @@ import { WeatherForecast } from '../components/pages/Weather/WeatherForecast';
 import { toggleLoading } from '../store/actions/loading.action';
 import { loadCurrentWeatherData, loadWeatherForecastData } from '../store/actions/weather.action';
 import { AppState } from '../store/reducers/index.reducers';
-import { IWeatherData } from '../store/types/weather.types';
+import { ICurrentWeatherData } from '../store/types/weather.types';
 
 export const WeatherPage: React.FC = () => {
   const {
@@ -20,7 +20,9 @@ export const WeatherPage: React.FC = () => {
     conditionIcon,
     tempCelsius,
     forecastData,
-  } = useSelector<AppState, IWeatherData>((state) => state.weatherReducer);
+  } = useSelector<AppState, ICurrentWeatherData>(
+    (state) => state.weatherReducer
+  );
 
   const dispatch = useDispatch();
 

@@ -1,5 +1,6 @@
-export interface IWeatherData {
+export interface ICurrentWeatherData {
   country: string | null;
+
   city: string | null;
   condition: string | null;
   conditionDescription: string | null;

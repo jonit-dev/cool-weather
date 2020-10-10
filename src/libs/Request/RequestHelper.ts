@@ -1,14 +1,13 @@
 import { AxiosRequestConfig } from 'axios';
 
-import { weatherApiAxios } from '../constants/axios.constant';
-
-export class APIHelper {
-  public static async request(
+export class RequestHelper {
+  public async request(
+    axiosObj: any,
     method: AxiosRequestConfig["method"],
     url: string,
     data?: object
   ) {
-    const response = await weatherApiAxios({
+    const response = await axiosObj({
       method,
       url,
       data,

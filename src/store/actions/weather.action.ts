@@ -1,6 +1,6 @@
 import { globalEnv } from '../../constants/global.config';
 import { DateHelper } from '../../libs/DateHelper';
-import { APIHelper } from '../../libs/RequestHelper';
+import { WeatherAPIHelper } from '../../libs/Request/WeatherAPIHelper';
 import { LOAD_WEATHER } from '../reducers/weather.reducer';
 import { IWeatherForecastItem } from '../types/weather.types';
 import { showAlert } from './alert.action';
@@ -8,7 +8,9 @@ import { showAlert } from './alert.action';
 export const loadCurrentWeatherData = (city: string) => async (dispatch) => {
   let response;
   try {
-    response = await APIHelper.request(
+    const weatherApiHelper = new WeatherAPIHelper();
+
+    response = await weatherApiHelper.weatherRequest(
       "GET",
       `/weather?q=${city}&units=metric&appid=${globalEnv.weatherApiKey}`
     );
@@ -42,7 +44,9 @@ export const loadCurrentWeatherData = (city: string) => async (dispatch) => {
 };
 
 export const loadWeatherForecastData = (city: string) => async (dispatch) => {
-  const { data } = await APIHelper.request(
+  const weatherApiHelper = new WeatherAPIHelper();
+
+  const { data } = await weatherApiHelper.weatherRequest(
     "GET",
     `/forecast?q=${city}&units=metric&appid=${globalEnv.weatherApiKey}`
   );
