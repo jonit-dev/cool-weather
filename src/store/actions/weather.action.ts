@@ -1,8 +1,17 @@
 import { globalEnv } from '../../constants/global.config';
 import { DateHelper } from '../../libs/DateHelper';
 import { APIHelper } from '../../libs/RequestHelper';
-import { LOAD_WEATHER } from '../reducers/weather.reducer';
+import { CHANGE_WEATHER_CITY, LOAD_WEATHER } from '../reducers/weather.reducer';
 import { IWeatherForecastItem } from '../types/weather.types';
+
+export const changeWeatherCity = (city: string) => async (dispatch) => {
+  dispatch({
+    type: CHANGE_WEATHER_CITY,
+    payload: {
+      city,
+    },
+  });
+};
 
 export const loadCurrentWeatherData = (city: string) => async (dispatch) => {
   const { data } = await APIHelper.request(

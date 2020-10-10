@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
+import { GeolocationButton } from '../components/global/Toolbar/GeolocationButton';
 import { WeatherConditionIcon } from '../components/pages/Weather/WeatherConditionIcon';
 import { WeatherForecast } from '../components/pages/Weather/WeatherForecast';
 import { loadCurrentWeatherData, loadWeatherForecastData } from '../store/actions/weather.action';
@@ -36,6 +37,9 @@ export const WeatherPage: React.FC = () => {
             <IonButtons slot="start">
               <IonMenuButton color="light" />
             </IonButtons>
+            <IonButtons slot="end">
+              <GeolocationButton />
+            </IonButtons>
             {/* <IonTitle>{pageTitle}</IonTitle> */}
           </IonToolbar>
         </IonHeader>
@@ -47,7 +51,7 @@ export const WeatherPage: React.FC = () => {
             <IonTitle size="large">{pageTitle}</IonTitle>
           </IonToolbar> */}
         </IonHeader>
-        <WeatherTitle>Vancouver</WeatherTitle>
+        <WeatherTitle>{city}</WeatherTitle>
 
         <WeatherInfoContainer className="ion-padding">
           <WeatherCenterPanel>
@@ -121,9 +125,9 @@ const CustomHeader = styled.div`
 const WeatherTitle = styled.div`
   width: 100%;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   position: relative;
-  top: -1.9rem;
+  top: -1.8rem;
   font-weight: 600;
   letter-spacing: 2px;
 `;
