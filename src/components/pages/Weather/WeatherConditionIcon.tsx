@@ -10,7 +10,7 @@ export const WeatherConditionIcon: React.FC<IProps> = ({ conditionIcon }) => {
     <Container>
       <img
         alt="weather condition icon"
-        src={`http://openweathermap.org/img/wn/${conditionIcon}@2x.png`}
+        src={`https://openweathermap.org/img/wn/${conditionIcon}@2x.png`}
       />
     </Container>
   );
