@@ -1265,6 +1265,20 @@
   dependencies:
     "@hapi/hoek" "^8.3.0"
 
+"@ionic-native/core@^5.28.0":
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/core/-/core-5.28.0.tgz#9fdbc3657d778c4c524c7091e6f0c8e4426bcd28"
+  integrity sha512-YmR70U+bIk1e4V36bke8HCol2XwuplAr4OTok4Jdx6MaAfJ1xR1AWt2PiQOIgM8bAq8qkVlbgsYi2rEOzKVc7A==
+  dependencies:
+    "@types/cordova" latest
+
+"@ionic-native/launch-navigator@^5.28.0":
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/@ionic-native/launch-navigator/-/launch-navigator-5.28.0.tgz#af76d012c7d236cce287310660d5b2e901a7ee41"
+  integrity sha512-a0r9DCYLwGBViv+NfEBsKzXLhGXWnQjCPBgtIwVawYZ8ncUE/amYgUZEWVHb1HeejJHoGrDtWQlh3Z0RM0uHAg==
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic/core@5.3.5":
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/@ionic/core/-/core-5.3.5.tgz#886bb06c2f715d630acfd32d552c33b1bf02c431"
@@ -1671,6 +1685,11 @@
   integrity sha512-Pzh9O3sTK8V6I1olsXpCfj2k/ygO2q1X0vhhnDrEQyYLHZesWz+zMZMVcwXLCYf0U36EtmyYaFGPfXlTtDHe3A==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/cordova@latest":
+  version "0.0.34"
+  resolved "https://registry.yarnpkg.com/@types/cordova/-/cordova-0.0.34.tgz#ea7addf74ecec3d7629827a0c39e2c9addc73d04"
+  integrity sha1-6nrd907Ow9dimCegw54smt3HPQQ=
 
 "@types/d3-path@^1":
   version "1.0.9"
@@ -10949,6 +10968,11 @@ typescript@3.8.3:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.8.3.tgz#409eb8544ea0335711205869ec458ab109ee1061"
   integrity sha512-MYlEfn5VrLNsgudQTVJeNaQFUAI7DkhnOjdpAp4T+ku1TfQClewlbSuTVHiA+8skNBgaf02TL/kLOvig4y3G8w==
+
+uk.co.workingedge.phonegap.plugin.launchnavigator@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/uk.co.workingedge.phonegap.plugin.launchnavigator/-/uk.co.workingedge.phonegap.plugin.launchnavigator-5.0.5.tgz#1b8e3dd97ffbf36c42010204c08040a2e1c095d1"
+  integrity sha512-mKsqU1TnrZsAQB8CLW+YHr+Mx3YAB0ELW8kF0qjMLIzm8J5mz1UqbuvzXwOzYLLNlGpkTs1DF2B6gZlGd6mYRA==
 
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"

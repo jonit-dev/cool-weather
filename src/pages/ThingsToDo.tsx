@@ -35,11 +35,13 @@ export const ThingsToDo: React.FC = () => {
   }, [city, dispatch, lat, lng]);
 
   const onRenderPlaces = () => {
-    return places.map((place) => {
+    return places.map((place, i) => {
       const imageUrl = `https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${place.photoReference}&key=${globalEnv.googlePlacesAPIKey}`;
 
       return (
         <Place
+          key={place.name + i}
+          location={place.location}
           title={place.name}
           subtitle={place.address}
           imageUrl={imageUrl}
@@ -54,7 +56,7 @@ export const ThingsToDo: React.FC = () => {
         Things to do in {city} ({condition}):
       </h1>
 
-      {places && <div className="ion-padding">{onRenderPlaces()}</div>}
+      {places && <div>{onRenderPlaces()}</div>}
     </Page>
   );
 };

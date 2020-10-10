@@ -15,7 +15,7 @@ export const loadPlaces = (city: string, lat: number, lng: number) => async (
     )}&rankby=prominence&key=${globalEnv.googlePlacesAPIKey}`
   );
 
-  const places: IPlaceData = data.results.map((item) => {
+  let places: IPlaceData[] = data.results.map((item) => {
     return {
       name: item.name,
       location: item.geometry.location,
@@ -23,7 +23,6 @@ export const loadPlaces = (city: string, lat: number, lng: number) => async (
       photoReference: item.photos[0].photo_reference,
     };
   });
-  console.log(places);
 
   dispatch({ type: LOAD_PLACES, payload: places });
 };
