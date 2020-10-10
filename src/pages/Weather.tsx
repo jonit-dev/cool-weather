@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
 import { Page } from '../components/global/Page/Page';
 import { WeatherConditionIcon } from '../components/pages/Weather/WeatherConditionIcon';
 import { WeatherForecast } from '../components/pages/Weather/WeatherForecast';
-import { toggleLoading } from '../store/actions/loading.action';
-import { loadCurrentWeatherData, loadWeatherForecastData } from '../store/actions/weather.action';
 import { AppState } from '../store/reducers/index.reducers';
 import { ICurrentWeatherData } from '../store/types/weather.types';
 
@@ -22,20 +20,6 @@ export const WeatherPage: React.FC = () => {
   } = useSelector<AppState, ICurrentWeatherData>(
     (state) => state.weatherReducer
   );
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    (async () => {
-      console.log(`Loading weather data from ${city}`);
-      if (city) {
-        dispatch(toggleLoading(true, "Loading weather data..."));
-        dispatch(loadCurrentWeatherData(city));
-        dispatch(loadWeatherForecastData(city));
-        dispatch(toggleLoading(false, null));
-      }
-    })();
-  }, [city, dispatch]);
 
   return (
     <Page>

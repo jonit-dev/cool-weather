@@ -1,7 +1,8 @@
 export interface ICurrentWeatherData {
   country: string | null;
-
   city: string | null;
+  lat: number;
+  lng: number;
   condition: string | null;
   conditionDescription: string | null;
   conditionIcon: string | null;

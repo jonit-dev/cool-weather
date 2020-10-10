@@ -12,7 +12,8 @@ import '@ionic/react/css/typography.css';
 
 import { IonApp, IonRouterOutlet, IonSplitPane } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 
 import { Menu } from './components/global/Menu/Menu';
@@ -20,12 +21,34 @@ import { ShowAlert } from './components/global/ShowAlert/ShowAlert';
 import { ShowLoading } from './components/global/ShowLoading/ShowLoading';
 import { ThingsToDo } from './pages/ThingsToDo';
 import { WeatherPage } from './pages/Weather';
+import { toggleLoading } from './store/actions/loading.action';
+import { loadCurrentWeatherData, loadWeatherForecastData } from './store/actions/weather.action';
+import { AppState } from './store/reducers/index.reducers';
+import { ICurrentWeatherData } from './store/types/weather.types';
 
 /* Core CSS required for Ionic components to work properly */
 /* Basic CSS for apps built with Ionic */
 /* Optional CSS utils that can be commented out */
 /* Theme variables */
 const App: React.FC = () => {
+  const { city } = useSelector<AppState, ICurrentWeatherData>(
+    (state) => state.weatherReducer
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      console.log(`Loading weather data from ${city}`);
+      if (city) {
+        dispatch(toggleLoading(true, "Loading weather data..."));
+        dispatch(loadCurrentWeatherData(city));
+        dispatch(loadWeatherForecastData(city));
+        dispatch(toggleLoading(false, null));
+      }
+    })();
+  }, [city, dispatch]);
+
   return (
     <IonApp>
       <ShowLoading />

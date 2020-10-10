@@ -7,6 +7,8 @@ export const CHANGE_WEATHER_CITY = " CHANGE_WEATHER_CITY";
 const INITIAL_STATE: ICurrentWeatherData = {
   country: "CA",
   city: "Vancouver", // default city
+  lat: 49.24966,
+  lng: -123.11934,
   condition: null,
   conditionIcon: null,
   conditionDescription: null,

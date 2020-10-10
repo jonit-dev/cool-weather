@@ -35,6 +35,8 @@ export const loadCurrentWeatherData = (city: string) => async (dispatch) => {
     payload: {
       country: data.sys.country,
       city: data.name,
+      lat: data.coord.lat,
+      lng: data.coord.lon,
       condition: data.weather[0].main,
       conditionDescription: data.weather[0].description,
       conditionIcon: data.weather[0].icon,

@@ -4,9 +4,6 @@ import { googlePlacesApiAxios } from '../../constants/axios.constant';
 import { RequestHelper } from './RequestHelper';
 
 export class GooglePlacesAPIHelper extends RequestHelper {
-  constructor() {
-    super();
-  }
   public async googlePlacesRequest(
     method: AxiosRequestConfig["method"],
     url: string,

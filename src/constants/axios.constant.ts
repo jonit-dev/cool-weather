@@ -5,5 +5,6 @@ export const weatherApiAxios = axios.create({
 });
 
 export const googlePlacesApiAxios = axios.create({
-  baseURL: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?",
+  baseURL:
+    "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/",
 });
