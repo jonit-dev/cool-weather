@@ -25,7 +25,7 @@ Oct 9, 2020 - 9pm
 - Didn't had time to test launch navigator on a real device (but I hope it works =D)
 - Used Recharts library, even though I discovered that it doesn't work pretty well with Hooks (see console warnings). I'd use another library in a real environment.
 - I'd probably go with MobX in a real application of that scope, but since I'm not so skilled with it, I felt that it would be better to stick with redux
-- I'd have also used a dynamic background that changes according to the weather state, but I didn't had time and I didn't find anything useful on the web
+- I'd have also used a dynamic background that changes according to the weather state, but I didn't had time and I didn't find any decent asset on the web
 
 ### Stretch goals attempted
 
